@@ -12,7 +12,11 @@ function App() {
     })();
   }, []);
 
-  return <div className="bg-red-500">{apiData ? apiData.status : 'Hello'}</div>;
+  return (
+    <div className="bg-red-500">
+      Status:{apiData ? apiData.status : 'Hello'}
+    </div>
+  );
 }
 
 export default App;
