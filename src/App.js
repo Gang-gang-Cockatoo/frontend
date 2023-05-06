@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { Outlet } from 'react-router';
 
 function App() {
   const [apiData, setApiData] = useState(null);
@@ -13,8 +14,9 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-red-500">
+    <div className="">
       Status:{apiData ? apiData.status : 'Hello'}
+      <Outlet />
     </div>
   );
 }

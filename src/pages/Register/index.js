@@ -4,10 +4,13 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import './styles.css';
 import { Page } from '../../components';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 const REGISTER_URL = `${process.env.REACT_APP_API}/users`;
 
 export default function Regsiter() {
+  const history = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -48,20 +51,39 @@ export default function Regsiter() {
 
     await axios
       .post(REGISTER_URL, { ...data, type: 'candidate' }, { headers: {} })
-      .then((data) => console.log(data));
+      .then((response) => {
+        if (response.status !== 201) {
+          setError('Register error');
+          return;
+        }
+
+        console.log(response.data);
+
+        const userData = {
+          firstName: response.data.firstName,
+          lastName: response.data.lastName,
+          email: response.data.email,
+          type: response.data.type,
+        };
+
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', JSON.stringify(userData));
+
+        history('/candidate');
+      });
   };
 
   return (
     <Page>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
-          <div className="form-item">
-            <label className="form-item-label">First Name</label>
-            <input className="form-item-input" {...register('firstName')} />
-          </div>
-          <div className="form-item">
-            <label className="form-item-label">Last Name</label>
-            <input className="form-item-input" {...register('lastName')} />
-          </div>
+        <div className="form-item">
+          <label className="form-item-label">First Name</label>
+          <input className="form-item-input" {...register('firstName')} />
+        </div>
+        <div className="form-item">
+          <label className="form-item-label">Last Name</label>
+          <input className="form-item-input" {...register('lastName')} />
+        </div>
 
         <div className="form-item">
           <label className="form-item-label">Email</label>
@@ -95,7 +117,7 @@ export default function Regsiter() {
             {...register('password2', {
               validate: (value) => password === value,
             })}
-            type="password2"
+            type={showPassword ? 'text' : 'password'}
           />
         </div>
         {errors.password2?.type === 'validate' && (
