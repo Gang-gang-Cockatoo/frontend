@@ -12,5 +12,6 @@ RUN npm run build
 FROM nginx:1.23.4
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
+COPY ./default.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/build .
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
