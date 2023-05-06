@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Page } from '../../components';
+import './styles.css';
 
 const GET_QUIZZES = `${process.env.REACT_APP_API}/quizzes`;
 
@@ -31,14 +32,16 @@ export default function Quizzes() {
 
   return (
     <Page>
-      {quizzes.map((item) => (
-        <div onClick={(e) => handleClick(e, item)}>
-          <h1>{item.name}</h1>
-          <h3>{item.author.companyName}</h3>
-          <h3>TAG</h3>
-          <h3>Questions: {item.questions.length}</h3>
-        </div>
-      ))}
+      <div className="quizList">
+        {quizzes.map((item) => (
+          <div className="quizCard" onClick={(e) => handleClick(e, item)}>
+            <h1>{item.name}</h1>
+            <h3>{item.author.companyName}</h3>
+            <h3>TAG</h3>
+            <h3>Questions: {item.questions.length}</h3>
+          </div>
+        ))}
+      </div>
     </Page>
   );
 }
