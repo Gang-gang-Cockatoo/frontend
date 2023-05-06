@@ -21,10 +21,7 @@ export default function Regsiter() {
   const [error, setError] = useState('');
 
   const onSubmit = async (data) => {
-    console.log(data);
-
     await axios.post(LOGIN_URL, { ...data }).then((response) => {
-      console.log(response);
       if (response.data?.errors) {
         setError('Login error');
         return;
