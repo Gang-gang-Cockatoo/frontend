@@ -4,7 +4,7 @@ import App from '../App';
 import {
   Home,
   LogIn,
-  // Quiz,
+  Quiz,
   Quizzes,
   RegisterCandidate,
   RegisterRecruiter,
@@ -46,10 +46,10 @@ export const router = createBrowserRouter([
             path: 'quizzes',
             element: <Quizzes />,
           },
-          // {
-          //   path: 'quiz/:id',
-          //   element: <Quiz />,
-          // },
+          {
+            path: 'quiz/:id',
+            element: <Quiz />,
+          },
         ],
       },
       // recruiter routes

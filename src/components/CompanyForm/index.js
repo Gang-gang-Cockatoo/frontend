@@ -131,7 +131,7 @@ export default function CompanyForm() {
             </div>
           </div>
           <div className="p-2 w-2/5 flex justify-around ">
-            <label className="bg-green-400 hover:bg-green-300 text-white font-bold py-1 px-2 border-b-4 border-green-700 hover:border-green-500 rounded">
+            <label className="bg-green-400 hover:bg-green-300 text-white font-bold py-1 px-2 mx-2 border-b-4 border-green-700 hover:border-green-500 rounded">
               <input
                 type="radio"
                 value="easy"

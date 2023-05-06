@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './styles.css';
 
-function QuizCard({ question, score, setScore }) {
+function QuizCard({ question, score, setScore, setIndex }) {
   console.log(question.answers);
   const [answers, setAnswers] = useState([false, false, false, false]);
 
@@ -21,6 +21,8 @@ function QuizCard({ question, score, setScore }) {
     }
 
     if (correct) setScore((score) => score + getScore(question.difficulty));
+
+    setIndex((index) => index + 1);
   };
 
   const handleOptionSelect = (index, value) => {

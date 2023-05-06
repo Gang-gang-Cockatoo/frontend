@@ -10,7 +10,7 @@ export default function Quiz() {
   const [quiz, setQuiz] = useState(null);
   const timer = useRef();
   const { id } = useParams();
-
+  const [index, setIndex] = useState(0);
   useEffect(() => {
     (async () => {
       const token = localStorage.getItem('token');
@@ -18,7 +18,7 @@ export default function Quiz() {
         .get(GET_QUIZ + id, { headers: { Authorization: `bearer ${token}` } })
         .then((response) => {
           if (response.data?.errors) return;
-
+          console.log(response.data);
           setQuiz(response.data);
         });
     })();
@@ -38,18 +38,23 @@ export default function Quiz() {
     e.preventDefault();
     console.log(score);
   };
-
   return (
     <Page>
       <div className="w-full flex flex-col items-center">
         {quiz &&
-          quiz.questions.map((question, index) => (
+          (index < quiz.questions.length ? (
             <QuizCard
-              key={index}
-              question={question}
+              key={quiz.questions[index]._id}
+              question={quiz.questions[index]}
               score={score}
               setScore={setScore}
+              setIndex={setIndex}
             />
+          ) : (
+            <div className="bg-green-400 p-10 rounded-3xl flex flex-col items-center">
+              <h2>Race Completed!</h2>
+              <h2>Your Score {score}</h2>
+            </div>
           ))}
       </div>
       <button onClick={handleSubmit}>Submit</button>
