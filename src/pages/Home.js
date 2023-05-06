@@ -1,7 +1,7 @@
 import { Link, Navigate } from 'react-router-dom';
 
 export default function Home() {
-  const type = JSON.parse(localStorage.getItem('user')).type;
+  const type = JSON.parse(localStorage.getItem('user'))?.type;
 
   if (type === 'recruiter') return <Navigate to="/recruiter/quizzes" />;
   if (type === 'candidate') return <Navigate to="/candidate/quizzes" />;

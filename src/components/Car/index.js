@@ -13,7 +13,7 @@ export default function Car({ currentQ, totalQ, carNumber }) {
   }
 
   const sectionWidth = document.getElementById('track')?.offsetWidth;
-  const carWidth = sectionWidth * 0.1;
+  const carWidth = sectionWidth * 0.3;
   const carOffset = (currentQ / totalQ) * (sectionWidth - carWidth);
 
   return (
@@ -32,6 +32,7 @@ export default function Car({ currentQ, totalQ, carNumber }) {
           width: carWidth,
           height: '100%',
           left: `${carOffset}px`,
+          transition: 'left 0.3s',
         }}
       >
         <img
