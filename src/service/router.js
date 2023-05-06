@@ -8,6 +8,7 @@ import {
   Quizzes,
   RegisterCandidate,
   RegisterRecruiter,
+  UserList,
 } from '../pages';
 import PrivateRoute from '../components/PrivateRoute';
 
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
           {
             path: 'quizzes',
             element: <Quizzes />,
+          },
+          {
+            path: 'users',
+            element: <UserList />,
           },
         ],
       },
