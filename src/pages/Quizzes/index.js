@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Page } from '../../components';
+import { useNavigate } from 'react-router';
 
 const GET_QUIZZES = `${process.env.REACT_APP_API}/quizzes`;
 
 export default function Quizzes() {
+  const history = useNavigate();
   const [quizzes, setQuizzes] = useState([]);
   const token = localStorage.getItem('token');
   const user = JSON.parse(localStorage.getItem('user'));
@@ -26,7 +28,7 @@ export default function Quizzes() {
       return;
     }
 
-    console.log(`navigate to ${item.name}`);
+    history(`/candidate/quiz/${item._id}`);
   };
 
   return (
