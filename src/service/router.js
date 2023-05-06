@@ -10,12 +10,17 @@ import {
   RegisterRecruiter,
 } from '../pages';
 import PrivateRoute from '../components/PrivateRoute';
+import Socket from '../components/Socket';
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     children: [
+      {
+        path: '/socket',
+        element: <Socket />,
+      },
       {
         path: '/',
         element: <Home />,
