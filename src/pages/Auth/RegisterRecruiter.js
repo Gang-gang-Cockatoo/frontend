@@ -23,7 +23,6 @@ export default function Regsiter() {
   const [error, setError] = useState('');
 
   const onSubmit = async (data) => {
-    console.log(data);
     const isLengthOk = (s) => 5 <= s.length && s.length <= 255;
 
     if (!isLengthOk(data.companyName)) {
@@ -51,8 +50,6 @@ export default function Regsiter() {
           setError('Register error');
           return;
         }
-
-        console.log(response.data);
 
         const userData = {
           firstName: response.data.firstName,
