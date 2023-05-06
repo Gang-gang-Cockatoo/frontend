@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-
-import { Page } from '../components';
+import './styles.css';
+import { Page } from '../../components';
 import axios from 'axios';
 
 const REGISTER_URL = `${process.env.REACT_APP_API}/users`;
@@ -54,7 +54,6 @@ export default function Regsiter() {
   return (
     <Page>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="form-row">
           <div className="form-item">
             <label className="form-item-label">First Name</label>
             <input className="form-item-input" {...register('firstName')} />
@@ -63,7 +62,6 @@ export default function Regsiter() {
             <label className="form-item-label">Last Name</label>
             <input className="form-item-input" {...register('lastName')} />
           </div>
-        </div>
 
         <div className="form-item">
           <label className="form-item-label">Email</label>
