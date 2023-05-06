@@ -26,12 +26,7 @@ export default function Regsiter() {
     console.log(data);
     const isLengthOk = (s) => 5 <= s.length && s.length <= 255;
 
-    if (!isLengthOk(data.firstName)) {
-      setError('First Name should be between 5 and 255 characters');
-      return;
-    }
-
-    if (!isLengthOk(data.lastName)) {
+    if (!isLengthOk(data.companyName)) {
       setError('Last Name should be between 5 and 255 characters');
       return;
     }
@@ -50,7 +45,7 @@ export default function Regsiter() {
     }
 
     await axios
-      .post(REGISTER_URL, { ...data, type: 'candidate' }, { headers: {} })
+      .post(REGISTER_URL, { ...data, type: 'recruiter' }, { headers: {} })
       .then((response) => {
         if (response.status !== 201) {
           setError('Register error');
@@ -69,7 +64,7 @@ export default function Regsiter() {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(userData));
 
-        history('/candidate');
+        history('/');
       });
   };
 
@@ -77,12 +72,8 @@ export default function Regsiter() {
     <Page>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="form-item">
-          <label className="form-item-label">First Name</label>
-          <input className="form-item-input" {...register('firstName')} />
-        </div>
-        <div className="form-item">
-          <label className="form-item-label">Last Name</label>
-          <input className="form-item-input" {...register('lastName')} />
+          <label className="form-item-label">Company Name</label>
+          <input className="form-item-input" {...register('companyName')} />
         </div>
 
         <div className="form-item">

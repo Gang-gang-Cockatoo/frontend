@@ -1,7 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import App from '../App';
-import { Home, Register } from '../pages';
+import {
+  Home,
+  LogIn,
+  // Quiz,
+  Quizzes,
+  RegisterCandidate,
+  RegisterRecruiter,
+} from '../pages';
 import PrivateRoute from '../components/PrivateRoute';
 
 export const router = createBrowserRouter([
@@ -14,8 +21,21 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: 'login',
+        element: <LogIn />,
+      },
+      {
         path: 'register',
-        element: <Register />,
+        children: [
+          {
+            path: 'candidate',
+            element: <RegisterCandidate />,
+          },
+          {
+            path: 'recruiter',
+            element: <RegisterRecruiter />,
+          },
+        ],
       },
       // candidate routes
       {
@@ -24,8 +44,12 @@ export const router = createBrowserRouter([
         children: [
           {
             path: 'quizzes',
-            element: <div>Hello user!</div>,
+            element: <Quizzes />,
           },
+          // {
+          //   path: 'quiz/:id',
+          //   element: <Quiz />,
+          // },
         ],
       },
       // recruiter routes
@@ -35,7 +59,7 @@ export const router = createBrowserRouter([
         children: [
           {
             path: 'quizzes',
-            element: <div>Hello recruiter!</div>,
+            element: <Quizzes />,
           },
         ],
       },
