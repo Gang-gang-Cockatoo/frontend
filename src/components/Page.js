@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function Page({ children }) {
-  return <div className="page">{children}</div>;
+  return <div className="page flex w-full h-screen">{children}</div>;
 }
