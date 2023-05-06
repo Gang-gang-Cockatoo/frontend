@@ -1,6 +1,11 @@
+import { NavBar } from "../components";
+
 export default function Home() {
+  
+  
   return (
     <div className="bg-gradient-to-tr from-cyan-900 via-green-700 to-slate-900 h-screen flex justify-center items-center flex-col">
+      <NavBar />
       <div className="max-w-3xl flex justify-center items-center flex-col text-white">
         <div className="font-mono mb-5 text-5xl">Welcome</div>
         <div className="text-center">
