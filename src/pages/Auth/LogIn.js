@@ -23,8 +23,9 @@ export default function Regsiter() {
   const onSubmit = async (data) => {
     console.log(data);
 
-    await axios.post(LOGIN_URL, { data }).then((response) => {
-      if (response.status !== 201) {
+    await axios.post(LOGIN_URL, { ...data }).then((response) => {
+      console.log(response);
+      if (response.data?.errors) {
         setError('Login error');
         return;
       }
@@ -39,7 +40,7 @@ export default function Regsiter() {
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(userData));
 
-      history(response.data.type);
+      history('/');
     });
   };
 

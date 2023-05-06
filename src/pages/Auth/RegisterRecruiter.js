@@ -64,7 +64,7 @@ export default function Regsiter() {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(userData));
 
-        history(response.data.type);
+        history('/');
       });
   };
 
