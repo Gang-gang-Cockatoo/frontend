@@ -8,34 +8,36 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-  },
-  {
-    path: '/home',
-    element: <Home />,
-  },
-  {
-    path: '/register',
-    element: <Register />,
-  },
-  // candidate routes
-  {
-    path: '/candidate',
-    element: <PrivateRoute role="candidate" />,
     children: [
       {
-        path: 'quizzes',
-        element: <div>Hello user!</div>,
+        path: '/',
+        element: <Home />,
       },
-    ],
-  },
-  // recruiter routes
-  {
-    path: '/recruiter',
-    element: <PrivateRoute role="recruiter" />,
-    children: [
       {
-        path: 'quizzes',
-        element: <div>Hello recruiter!</div>,
+        path: 'register',
+        element: <Register />,
+      },
+      // candidate routes
+      {
+        path: 'candidate',
+        element: <PrivateRoute type="candidate" />,
+        children: [
+          {
+            path: 'quizzes',
+            element: <div>Hello user!</div>,
+          },
+        ],
+      },
+      // recruiter routes
+      {
+        path: 'recruiter',
+        element: <PrivateRoute type="recruiter" />,
+        children: [
+          {
+            path: 'quizzes',
+            element: <div>Hello recruiter!</div>,
+          },
+        ],
       },
     ],
   },
