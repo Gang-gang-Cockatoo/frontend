@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import './styles.css';
-import { Page } from '../../components';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 
@@ -71,64 +70,55 @@ export default function Regsiter() {
   };
 
   return (
-    <Page>
-      <form
-        className="form bg-gray-50 p-10 rounded-2xl"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <div className="form-item">
-          <label className="form-item-label">First Name</label>
-          <input className="form-item-input" {...register('firstName')} />
-        </div>
-        <div className="form-item">
-          <label className="form-item-label">Last Name</label>
-          <input className="form-item-input" {...register('lastName')} />
-        </div>
+    <form className="form bg-gray-50 p-10 rounded-2xl" onSubmit={handleSubmit(onSubmit)}>
+      <div className="form-item">
+        <label className="form-item-label">First Name</label>
+        <input className="form-item-input" {...register('firstName')} />
+      </div>
+      <div className="form-item">
+        <label className="form-item-label">Last Name</label>
+        <input className="form-item-input" {...register('lastName')} />
+      </div>
 
-        <div className="form-item">
-          <label className="form-item-label">Email</label>
-          <input
-            className="form-item-input"
-            {...register('email')}
-            type="text"
-          />
-          {errors.email && <p className="form-error">Email error</p>}
-        </div>
+      <div className="form-item">
+        <label className="form-item-label">Email</label>
+        <input className="form-item-input" {...register('email')} type="text" />
+        {errors.email && <p className="form-error">Email error</p>}
+      </div>
 
-        <div className="form-item">
-          <label className="form-item-label">Password</label>
-          <input
-            className="form-item-input"
-            {...register('password')}
-            type={showPassword ? 'text' : 'password'}
+      <div className="form-item">
+        <label className="form-item-label">Password</label>
+        <input
+          className="form-item-input"
+          {...register('password')}
+          type={showPassword ? 'text' : 'password'}
+        />
+        {showPassword ? (
+          <AiOutlineEye onClick={() => setShowPassword((value) => !value)} />
+        ) : (
+          <AiOutlineEyeInvisible
+            onClick={() => setShowPassword((value) => !value)}
           />
-          {showPassword ? (
-            <AiOutlineEye onClick={() => setShowPassword((value) => !value)} />
-          ) : (
-            <AiOutlineEyeInvisible
-              onClick={() => setShowPassword((value) => !value)}
-            />
-          )}
-        </div>
-        <div className="form-item">
-          <label className="form-item-label">Confirm Password</label>
-          <input
-            className="form-item-input"
-            {...register('password2', {
-              validate: (value) => password === value,
-            })}
-            type={showPassword ? 'text' : 'password'}
-          />
-        </div>
-        {errors.password2?.type === 'validate' && (
-          <p className="form-error">Passwords are not the same</p>
         )}
-        {error.length > 0 && <p className="form-error">{error}</p>}
+      </div>
+      <div className="form-item">
+        <label className="form-item-label">Confirm Password</label>
+        <input
+          className="form-item-input"
+          {...register('password2', {
+            validate: (value) => password === value,
+          })}
+          type={showPassword ? 'text' : 'password'}
+        />
+      </div>
+      {errors.password2?.type === 'validate' && (
+        <p className="form-error">Passwords are not the same</p>
+      )}
+      {error.length > 0 && <p className="form-error">{error}</p>}
 
-        <button className="form-submit" type="submit">
-          Submit
-        </button>
-      </form>
-    </Page>
+      <button className="form-submit" type="submit">
+        Submit
+      </button>
+    </form>
   );
 }

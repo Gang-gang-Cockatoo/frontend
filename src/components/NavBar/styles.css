@@ -8,6 +8,8 @@
         width: 100%;
         display: flex;
         align-items: center;
+        justify-content: center;
+        
         position: fixed;
         bottom: 0;
         top: 0;
@@ -16,6 +18,21 @@
         color: black;
         box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
     }
+    .logout {
+      background-color: black;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 0 1rem;
+    }
+    
+    .logout:hover {
+      background-color: white;
+      color: black;
+    }
+    
     .navigation-menu {
         
         
@@ -24,12 +41,17 @@
         cursor: pointer;
         display: none;
     }
+
+    .ml-auto {
+      margin-left: auto;
+    }
+
     .navigation-menu ul {
         display: flex;
         padding: 0;
       }
       .navigation-menu li {
-        
+        padding: 10px 20px;
         list-style-type: none;
         margin: 0 1rem;
       }
@@ -63,6 +85,11 @@
       .navigation-menu li {
         text-align: center;
         margin: 0;
+      }
+      .navigation-menu button {
+        width: 100%;
+        margin: 0;
+
       }
       .navigation-menu li Link {
         color: black;

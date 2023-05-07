@@ -10,68 +10,43 @@ import {
   RegisterRecruiter,
   UserList,
 } from '../pages';
-import PrivateRoute from '../components/PrivateRoute';
-import Socket from '../components/Socket';
+import { CompanyForm, PrivateRoute } from '../components';
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     children: [
-      {
-        path: '/socket',
-        element: <Socket />,
-      },
-      {
-        path: '/',
-        element: <Home />,
-      },
-      {
-        path: 'login',
-        element: <LogIn />,
-      },
+      { path: '/', element: <Home /> },
+      { path: 'login', element: <LogIn /> },
       {
         path: 'register',
         children: [
-          {
-            path: 'candidate',
-            element: <RegisterCandidate />,
-          },
-          {
-            path: 'recruiter',
-            element: <RegisterRecruiter />,
-          },
+          { path: 'candidate', element: <RegisterCandidate /> },
+          { path: 'recruiter', element: <RegisterRecruiter /> },
         ],
       },
       // candidate routes
       {
-        path: 'candidate',
+        path: '',
         element: <PrivateRoute type="candidate" />,
-        children: [
-          {
-            path: 'quizzes',
-            element: <Quizzes />,
-          },
-          {
-            path: 'quiz/:id',
-            element: <Quiz />,
-          },
-        ],
+        children: [{ path: 'rooms', element: <div>Rooms page</div> }],
       },
       // recruiter routes
       {
-        path: 'recruiter',
+        path: '',
         element: <PrivateRoute type="recruiter" />,
         children: [
-          {
-            path: 'quizzes',
-            element: <Quizzes />,
-          },
-          {
-            path: 'users',
-            element: <UserList />,
-          },
+          { path: 'quizzes', element: <Quizzes /> },
+          { path: 'users', element: <UserList /> },
+          { path: 'create-quiz', element: <CompanyForm /> },
         ],
+      },
+      // shared routes
+      {
+        path: '',
+        element: <PrivateRoute type="shared" />,
+        children: [{ path: 'quiz/:quizId/room/:roomId', element: <Quiz /> }],
       },
     ],
   },

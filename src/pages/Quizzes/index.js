@@ -20,12 +20,10 @@ export default function Quizzes() {
   }, []);
 
   return (
-    <Page>
       <div className="quizList">
         {quizzes.map((item) => (
           <CreateRoomCard item={item} />
         ))}
       </div>
-    </Page>
   );
 }
