@@ -6,7 +6,7 @@ export default function Car({ id, currentQ, totalQ, carNumber }) {
   const carOffset = (currentQ / totalQ) * (trackWidth - carWidth);
 
   return (
-    <div className="relative w-full h-full bg-slate-50">
+    <div className="relative w-full h-full bg-slate-50 border-4 border-black">
       <div
         style={{
           position: 'absolute',

@@ -24,11 +24,12 @@ export default function Rooms() {
   }, []);
 
   return (
-    <div>
+    <div className="flex flex-col mt-16 items-center h-4/5">
       {rooms.map(({ _id, quiz, name }) => (
         <div
           key={_id}
           onClick={() => history(`/quiz/${quiz._id}/room/${name}`)}
+          className="bg-blue-50  bg-opacity-80 hover:bg-opacity-90 hover:shadow-2xl flex justify-center items-center p-4 m-5 rounded-xl text-2xl w-1/5"
         >
           {name}
         </div>
