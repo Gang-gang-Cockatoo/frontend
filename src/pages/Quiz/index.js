@@ -10,7 +10,7 @@ import { parseJwt } from '../../service/utils';
 import { Car, QuizCard } from '../../components';
 
 const SOCKET_URL = process.env.REACT_APP_API;
-const GET_QUIZ = `${process.env.REACT_APP_API}/quizzes`;
+const GET_QUIZ = `${process.env.REACT_APP_API}/quizzes/`;
 const TIME_LIMIT = 60 * 1000;
 
 const getMinAndSec = (timestamp) => {
@@ -51,21 +51,6 @@ export default function Quiz() {
     'user-connected',
   ];
 
-  console.log(
-    quizId,
-    roomId,
-    quiz,
-    token,
-    id,
-    type,
-    isConnected,
-    room,
-    raceStarted,
-    raceFinished,
-    leaderboard,
-    time
-  );
-
   useEffect(() => {
     socket.current = io(SOCKET_URL, { query: { room: roomId, id, type } });
 
@@ -93,11 +78,10 @@ export default function Quiz() {
   useEffect(() => {
     (async () => {
       await axios
-        .get(`${GET_QUIZ}/${quizId}`, {
+        .get(GET_QUIZ + quizId, {
           headers: { Authorization: `bearer ${token}` },
         })
         .then((response) => {
-          console.log(response.data);
           if (response.data?.errors) return;
           setQuiz(response.data);
         });
@@ -171,7 +155,7 @@ export default function Quiz() {
         <button
           onClick={startRace}
           type="submit"
-          className="w-[128px] self-center bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded "
+          className="w-2/6 h-2/6 self-center bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded mt-10 text-9xl rounded-full"
         >
           Start
         </button>
@@ -179,14 +163,16 @@ export default function Quiz() {
   }
 
   return (
-    <div className="h-full">
-      <div className="flex items-center justify-center text-lg">
-        <BiStopwatch size={32} />
-        Time left: {time.display}
+    <div className="h-full ">
+      <div className="flex items-center justify-center text-lg ">
+        <BiStopwatch size={32} className=" bg-opacity-80 bg-white rounded-l" />
+        <div className=" bg-opacity-80 bg-white rounded-r-xl px-2">
+          {' '}
+          Time left: {time.display}
+        </div>
       </div>
-      <div className="flex flex-col h-1/4">
-        {quiz &&
-          room &&
+      <div className="flex flex-col h-1/4 my-5">
+        {room &&
           room
             .filter(({ type }) => type === 'candidate')
             .map(({ id, level, status }, index) => {
@@ -204,19 +190,18 @@ export default function Quiz() {
       {type === 'candidate' ? (
         <div className="w-full h-3/4 flex flex-col items-center">
           {!raceFinished ? (
-            quiz && (
-              <QuizCard
-                key={quiz.questions[index]._id}
-                question={quiz.questions[index]}
-                onSubmit={handleSubmit}
-              />
-            )
+            <QuizCard
+              key={quiz.questions[index]._id}
+              question={quiz.questions[index]}
+              onSubmit={handleSubmit}
+            />
           ) : (
             <div className="bg-green-400 p-10 rounded-3xl flex flex-col items-center">
               <h2>Race Completed!</h2>
               <h2>Your Score {room.find((entry) => entry.id === id).score}</h2>
               <div>
                 <h2>Leaderboard</h2>
+                {console.log(leaderboard)}
                 {leaderboard.map(
                   ({ _id, firstName, lastName, email, points, time }) => (
                     <div key={_id} className="flex">
@@ -232,20 +217,22 @@ export default function Quiz() {
           )}
         </div>
       ) : (
-        <div>
-          {room &&
-            room.map(({ id, level, status, type, score }) => (
-              <p
-                key={id}
-              >{`Id: ${id}, Level: ${level}, Status: ${status}, Type: ${type}, Score: ${score}`}</p>
-            ))}
-          <button
-            onClick={endRace}
-            type="submit"
-            className="w-[128px] self-center bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded "
-          >
-            End Race
-          </button>
+        <div className="flex items-center justify-center flex-col ">
+          <div className="flex items-center justify-center flex-col bg-slate-200 w-3/5 rounded-2xl p-5">
+            {room &&
+              room.map(({ id, level, status, type, score }) => (
+                <p
+                  key={id}
+                >{`Id: ${id}, Level: ${level}, Status: ${status}, Type: ${type}, Score: ${score}`}</p>
+              ))}
+            <button
+              onClick={endRace}
+              type="submit"
+              className="w-[128px] self-center bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded "
+            >
+              End Race
+            </button>
+          </div>
         </div>
       )}
     </div>
