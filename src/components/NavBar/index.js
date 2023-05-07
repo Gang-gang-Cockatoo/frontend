@@ -16,6 +16,17 @@ export default function Navbar() {
           <li>
             <Link to="/">Home</Link>
           </li>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/recruiter/quizzes">Quizzes</Link>
+          </li>
+          <li>
+            <Link to="/recruiter/users">Users</Link>
+          </li>
+
+          <button className="logout ">Logout</button>
         </ul>
       </div>
       <button
