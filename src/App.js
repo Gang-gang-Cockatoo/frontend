@@ -1,12 +1,12 @@
 import { Outlet } from 'react-router';
-import { NavBar } from './components';
+import { NavBar, Page } from './components';
 
 function App() {
   return (
-    <div className="">
+    <Page>
       <NavBar />
       <Outlet />
-    </div>
+    </Page>
   );
 }
 

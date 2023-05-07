@@ -3,8 +3,8 @@ import { Link, Navigate } from 'react-router-dom';
 export default function Home() {
   const type = JSON.parse(localStorage.getItem('user'))?.type;
 
-  if (type === 'recruiter') return <Navigate to="/recruiter/quizzes" />;
-  if (type === 'candidate') return <Navigate to="/candidate/quizzes" />;
+  if (type === 'recruiter') return <Navigate to="/quizzes" />;
+  if (type === 'candidate') return <Navigate to="/rooms" />;
 
   return (
     <div className="bg-gradient-to-tr from-cyan-900 via-green-700 to-slate-900 h-screen flex justify-center items-center flex-col">
