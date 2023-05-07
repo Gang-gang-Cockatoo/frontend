@@ -91,7 +91,7 @@ export default function CreateQuiz() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="my-10 bg-slate-100 p-10 w-4/5 self-center"
+      className="my-10 bg-slate-100 p-10 w-4/5 self-center rounded-xl"
     >
       <div className="flex items-center justify-around mb-5">
         <div>
