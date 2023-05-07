@@ -25,8 +25,11 @@ export default function Rooms() {
 
   return (
     <div>
-      {rooms.map(({ _id, name }) => (
-        <div key={_id} onClick={() => history(`/quiz/${_id}/room/${name}`)}>
+      {rooms.map(({ _id, quiz, name }) => (
+        <div
+          key={_id}
+          onClick={() => history(`/quiz/${quiz._id}/room/${name}`)}
+        >
           {name}
         </div>
       ))}

@@ -10,7 +10,7 @@ import { parseJwt } from '../../service/utils';
 import { Car, QuizCard } from '../../components';
 
 const SOCKET_URL = process.env.REACT_APP_API;
-const GET_QUIZ = `${process.env.REACT_APP_API}/quizzes/`;
+const GET_QUIZ = `${process.env.REACT_APP_API}/quizzes`;
 const TIME_LIMIT = 60 * 1000;
 
 const getMinAndSec = (timestamp) => {
@@ -51,6 +51,21 @@ export default function Quiz() {
     'user-connected',
   ];
 
+  console.log(
+    quizId,
+    roomId,
+    quiz,
+    token,
+    id,
+    type,
+    isConnected,
+    room,
+    raceStarted,
+    raceFinished,
+    leaderboard,
+    time
+  );
+
   useEffect(() => {
     socket.current = io(SOCKET_URL, { query: { room: roomId, id, type } });
 
@@ -78,10 +93,11 @@ export default function Quiz() {
   useEffect(() => {
     (async () => {
       await axios
-        .get(GET_QUIZ + quizId, {
+        .get(`${GET_QUIZ}/${quizId}`, {
           headers: { Authorization: `bearer ${token}` },
         })
         .then((response) => {
+          console.log(response.data);
           if (response.data?.errors) return;
           setQuiz(response.data);
         });
@@ -165,7 +181,8 @@ export default function Quiz() {
         Time left: {time.display}
       </div>
       <div className="flex flex-col h-1/4">
-        {room &&
+        {quiz &&
+          room &&
           room
             .filter(({ type }) => type === 'candidate')
             .map(({ id, level, status }, index) => {
@@ -183,18 +200,19 @@ export default function Quiz() {
       {type === 'candidate' ? (
         <div className="w-full h-3/4 flex flex-col items-center">
           {!raceFinished ? (
-            <QuizCard
-              key={quiz.questions[index]._id}
-              question={quiz.questions[index]}
-              onSubmit={handleSubmit}
-            />
+            quiz && (
+              <QuizCard
+                key={quiz.questions[index]._id}
+                question={quiz.questions[index]}
+                onSubmit={handleSubmit}
+              />
+            )
           ) : (
             <div className="bg-green-400 p-10 rounded-3xl flex flex-col items-center">
               <h2>Race Completed!</h2>
               <h2>Your Score {room.find((entry) => entry.id === id).score}</h2>
               <div>
                 <h2>Leaderboard</h2>
-                {console.log(leaderboard)}
                 {leaderboard.map(
                   ({ _id, firstName, lastName, email, points, time }) => (
                     <div key={_id} className="flex">
