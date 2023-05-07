@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { async } from 'q';
 import { useEffect, useState } from 'react';
 
 const GET_TAGS = `${process.env.REACT_APP_API}/tags`;

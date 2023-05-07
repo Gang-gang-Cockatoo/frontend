@@ -3,51 +3,48 @@
 @tailwind utilities;
 
 @layer components {
-    .profileCard {
-        @apply w-[500px] h-[550px] bg-slate-100 bg-opacity-10 rounded-3xl flex flex-col justify-center items-center p-5 ml-[10px] mr-[10px] flex-wrap;
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-          rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-      }
+  .profileCard {
+    @apply w-[500px] h-[550px] bg-slate-100 bg-opacity-90 rounded-3xl flex flex-col justify-center items-center p-5 m-[20px] flex-wrap;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  }
 
-      .profileList {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
+  .profileList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-      .profileCard h1 {
-        font-size: 28px;
-        margin-top: 10px;
-        margin-bottom: 35px;
-        color: #000;
-      }
-      
-      .profileCard h2 {
-        font-size: 18px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        color: #000;
-      }
-      
-      table {
-        border-collapse: collapse;
-        width: 75%;
-        max-width: 800px;
-      }
-      
-      th,
-      td {
-        padding: 12px;
-        text-align: center;
-        border: 3px solid transparent;
-      }
-      
-    
+  .profileCard h1 {
+    font-size: 28px;
+    margin-top: 10px;
+    margin-bottom: 35px;
+    color: #000;
+  }
+
+  .profileCard h2 {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #000;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 75%;
+    max-width: 800px;
+    border-top: 5px solid black;
+  }
+
+  th,
+  td {
+    padding: 12px;
+    text-align: center;
+    border: 3px solid transparent;
+  }
 }
 
-
-  
-  /* .profileCard {
+/* .profileCard {
     width: 400px;
     height: 500px;
     margin: 20px;
@@ -62,5 +59,3 @@
     text-align: center;
     border: 3px solid transparent;
   } */
-  
-  

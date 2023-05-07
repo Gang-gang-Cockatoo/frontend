@@ -41,13 +41,20 @@ export default function Regsiter() {
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit(onSubmit)}>
-      <div className="form-item">
-        <label className="form-item-label">Email</label>
-        <input className="form-item-input" {...register('email')} type="text" />
-        {errors.email && <p className="form-error">Email error</p>}
-      </div>
-
+    <Page>
+      <form
+        className="form bg-gray-50 p-10 rounded-2xl"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <div className="form-item">
+          <label className="form-item-label">Email</label>
+          <input
+            className="form-item-input"
+            {...register('email')}
+            type="text"
+          />
+          {errors.email && <p className="form-error">Email error</p>}
+        </div>
       <div className="form-item">
         <label className="form-item-label">Password</label>
         <input
