@@ -18,9 +18,10 @@ export default function UserProfile({ user, leaderboard }) {
           </tr>
         </thead>
         <tbody>
-          {leaderboard.map(({ _id, quiz, time, score, place }) => (
+          {console.log(leaderboard)}
+          {leaderboard.slice(0, 4).map(({ _id, quiz, time, score, place }) => (
             <tr key={_id}>
-              <td>{quiz}</td>
+              <td>{quiz.name}</td>
               <td>{time}</td>
               <td>{score}</td>
               <td>{place}</td>
