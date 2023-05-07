@@ -11,9 +11,7 @@ export default function CompanyForm() {
   const [tags, setTags] = useState([]);
   useEffect(() => {
     (async () => {
-      const token =
-        'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU2OGZjNzM0OGJjZjFhMTM1MWZhZjgiLCJ0eXBlIjoiY2FuZGlkYXRlIiwibGFzdE5hbWUiOiJhbGV4IiwiZmlyc3ROYW1lIjoiZnJ1bnphIiwiZW1haWwiOiJjYW5kaWRhdGVAY2FuZGlkYXRlLmNvbSIsImlhdCI6MTY4MzM5NjgwNywiZXhwIjoxNjgzNDgzMjA3fQ.BKYzvrK1YhXEHK2u4WMANO0w9vMKgEZxgFh1cyxw6dW2dhiNH5mocX8NGjIvxgQvYML-MXvR9KEPZ2vUNOvOT2UIgKc6I8Cb7eOdhcrXIld0vmNij2fBJDvqZreXOuQB3V0fMr43ahZyW45Q-WV0-ZbxOiha2oYgSVIfFAbu3xLcZv9SzKc0h9HM-xT6rs1T0uSSikZr498MDDTkiEpobNz_fSEYKIGps7rgB_RtpUuOANSas3YKzAkNpVPjtGmBo3G7mGBMNR19LjD7ZgC3WTr7wW0bn2Sc_EzXqBLAbLPoI3LAGnKDBlDrWxxlaKXnpKSNSYwlrdTkawFWeRl67cvxMDluupgi8l_glfLfasuqAW4x65xDR9KkFE924Nl21yk9VPDz8d43niIJRDTbwJcZvpEj6XjZy6hsQq5sm8uMHy5gZgj_WQxqWhtpYSr--5_kDzOSWFi67r9sopejut9uLsih2nwi5JIHasH0XQ59lakEUF8P0sgKphL9O3MsnpNQ80UD8WZy_0c4Q4SDsPleFuUy1S4ZEmvIye5WZUIGn6-DeHcyKE9EiFjAlqdFXti1GHpeKDNLEOheGwMB314RBJTcaL9vd94AaYvq2ea1XWxu3kpYYWXLKb1Jy7mqnX6HFZkBWbcB-rwzsUhYz4egvk9zDrZdJ0kZGlxIM';
-      //   const token = localStorage.getItem('token');
+      const token = localStorage.getItem('token');
       await axios
         .get(GET_TAGS, {
           headers: { Authorization: `bearer ${token}` },
@@ -27,7 +25,6 @@ export default function CompanyForm() {
 
   const handleOptionChange = (index, value) => {
     const newInputs = [...questions];
-    console.log(newInputs[index]);
     newInputs[index].difficulty = value;
     setQuestions(newInputs);
   };

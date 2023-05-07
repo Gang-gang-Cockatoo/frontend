@@ -1,9 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Page } from '../../components';
 import { useNavigate } from 'react-router';
 import './styles.css';
-
 
 const GET_QUIZZES = `${process.env.REACT_APP_API}/quizzes`;
 
@@ -26,25 +24,29 @@ export default function Quizzes() {
   const handleClick = (e, item) => {
     e.preventDefault();
 
-    if (user?.type !== 'candidate') {
-      return;
-    }
+    // if (user?.type !== 'candidate') {
+    //   return;
+    // }
 
-    history(`/candidate/quiz/${item._id}`);
+    console.log('?');
+
+    history(`/quiz/${item._id}/room/test`);
   };
 
   return (
-    <Page>
-      <div className="quizList">
-        {quizzes.map((item) => (
-          <div className="quizCard" onClick={(e) => handleClick(e, item)}>
-            <h1>{item.name}</h1>
-            <h3>{item.author.companyName}</h3>
-            <h3>TAG</h3>
-            <h3>Questions: {item.questions.length}</h3>
-          </div>
-        ))}
-      </div>
-    </Page>
+    <div className="quizList">
+      {quizzes.map((item) => (
+        <div
+          key={item._id}
+          className="quizCard"
+          onClick={(e) => handleClick(e, item)}
+        >
+          <h1>{item.name}</h1>
+          <h3>{item.author.companyName}</h3>
+          <h3>TAG</h3>
+          <h3>Questions: {item.questions.length}</h3>
+        </div>
+      ))}
+    </div>
   );
 }

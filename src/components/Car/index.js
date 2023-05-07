@@ -1,36 +1,16 @@
-export default function Car({ currentQ, totalQ, carNumber }) {
-  console.log(currentQ, totalQ, carNumber);
+export default function Car({ id, currentQ, totalQ, carNumber }) {
+  const carImage = `/assets/${carNumber}.png`;
 
-  let carImage;
-  if (carNumber === 1) {
-    carImage = 'assets/1.png';
-  } else if (carNumber === 2) {
-    carImage = 'assets/2.png';
-  } else if (carNumber === 3) {
-    carImage = 'assets/3.png';
-  } else if (carNumber === 4) {
-    carImage = 'assets/4.png';
-  }
-
-  const sectionWidth = document.getElementById('track')?.offsetWidth;
-  const carWidth = sectionWidth * 0.3;
-  const carOffset = (currentQ / totalQ) * (sectionWidth - carWidth);
+  const trackWidth = window.innerWidth;
+  const carWidth = trackWidth * 0.1;
+  const carOffset = (currentQ / totalQ) * (trackWidth - carWidth);
 
   return (
-    <div
-      id="track"
-      style={{
-        position: 'relative',
-        width: '100%',
-        backgroundColor: 'pink',
-        height: '100px',
-      }}
-    >
+    <div className="relative w-full h-full bg-slate-50">
       <div
         style={{
           position: 'absolute',
           width: carWidth,
-          height: '100%',
           left: `${carOffset}px`,
           transition: 'left 0.3s',
         }}
