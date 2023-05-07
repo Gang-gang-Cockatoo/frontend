@@ -26,8 +26,8 @@ export default function UserList() {
 
   return (
     <div className="profileList">
-      {users.map((user) => (
-        <UserProfile key={user._id} user={user} />
+      {users.map(({ user, leaderboard }) => (
+        <UserProfile key={user._id} user={user} leaderboard={leaderboard} />
       ))}
     </div>
   );

@@ -13,7 +13,7 @@ export default function CreateRoomCard({ item }) {
     <div className="quizCard">
       <h1 className="quizTitle">{item.name}</h1>
       <h3>{item.author.companyName}</h3>
-      <h3>TAG</h3>
+      <h3>{item.tag.name}</h3>
       <h3>Questions: {item.questions.length}</h3>
       <input
         className="form-item-input w-2/5"

@@ -1,6 +1,6 @@
 import './styles.css';
 
-export default function UserProfile({ user }) {
+export default function UserProfile({ user, leaderboard }) {
   if (!user) return;
 
   return (
@@ -18,7 +18,7 @@ export default function UserProfile({ user }) {
           </tr>
         </thead>
         <tbody>
-          {user.leaderboard.map(({ _id, quiz, time, score, place }) => (
+          {leaderboard.map(({ _id, quiz, time, score, place }) => (
             <tr key={_id}>
               <td>{quiz}</td>
               <td>{time}</td>
