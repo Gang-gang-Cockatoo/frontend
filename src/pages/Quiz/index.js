@@ -146,7 +146,16 @@ export default function Quiz() {
           </div>
         </div>
       );
-    if (type === 'recruiter') return <button onClick={startRace}>Start</button>;
+    if (type === 'recruiter')
+      return (
+        <button
+          onClick={startRace}
+          type="submit"
+          className="w-[128px] self-center bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded "
+        >
+          Start
+        </button>
+      );
   }
 
   return (
@@ -187,8 +196,8 @@ export default function Quiz() {
                 <h2>Leaderboard</h2>
                 {console.log(leaderboard)}
                 {leaderboard.map(
-                  ({ firstName, lastName, email, points, time }) => (
-                    <div className="flex">
+                  ({ _id, firstName, lastName, email, points, time }) => (
+                    <div key={_id} className="flex">
                       <h1>{`${firstName} ${lastName}`}</h1>
                       <h2>{email}</h2>
                       <h2>Score: {points}</h2>
@@ -204,9 +213,17 @@ export default function Quiz() {
         <div>
           {room &&
             room.map(({ id, level, status, type, score }) => (
-              <p>{`Id: ${id}, Level: ${level}, Status: ${status}, Type: ${type}, Score: ${score}`}</p>
+              <p
+                key={id}
+              >{`Id: ${id}, Level: ${level}, Status: ${status}, Type: ${type}, Score: ${score}`}</p>
             ))}
-          <button onClick={endRace}>End Race</button>
+          <button
+            onClick={endRace}
+            type="submit"
+            className="w-[128px] self-center bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded "
+          >
+            End Race
+          </button>
         </div>
       )}
     </div>

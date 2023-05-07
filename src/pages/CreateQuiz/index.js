@@ -1,19 +1,23 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 
-const GET_TAGS = `${process.env.REACT_APP_API}/tags`;
+const GET_TAGS = `${process.env.REACT_APP_API}/tag`;
+const POST_QUIZ = `${process.env.REACT_APP_API}/quizzes`;
 
-export default function CompanyForm() {
+export default function CreateQuiz() {
+  const history = useNavigate();
   const [name, setName] = useState('');
-  const [tag, setTag] = useState('');
+  const [tagId, setTagId] = useState('');
   const [questions, setQuestions] = useState([]);
   const [tags, setTags] = useState([]);
+  const token = localStorage.getItem('token');
+
   useEffect(() => {
     (async () => {
-      const token = localStorage.getItem('token');
       await axios
         .get(GET_TAGS, {
-          headers: { Authorization: `bearer ${token}` },
+          // headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {
           if (response.data?.errors) return;
@@ -54,12 +58,6 @@ export default function CompanyForm() {
     setQuestions(newInputs); // update the questions state with the new array
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    console.log({ name, tag, questions });
-  }
-
   function handleInputChangeAnswer(questionIndex, answerIndex, value) {
     const newInputs = [...questions];
     newInputs[questionIndex].answers[answerIndex].text = value;
@@ -69,12 +67,32 @@ export default function CompanyForm() {
   function handleInputChangeAnswer2(questionIndex, answerIndex, value) {
     const newInputs = [...questions];
     newInputs[questionIndex].answers[answerIndex].correct =
-      value === 'on' ? true : false;
+      !newInputs[questionIndex].answers[answerIndex].correct;
     setQuestions(newInputs);
   }
 
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    console.log({ token, name, tagId, questions });
+    await axios
+      .post(
+        POST_QUIZ,
+        { name, tagId, questions },
+        { headers: { Authorization: `bearer ${token}` } }
+      )
+      .then((response) => {
+        console.log(response.data);
+        if (response.data?.errors) return;
+        history('/');
+      });
+  }
+
   return (
-    <form onSubmit={handleSubmit} className="my-10 bg-slate-100 p-10 w-4/5">
+    <form
+      onSubmit={handleSubmit}
+      className="my-10 bg-slate-100 p-10 w-4/5 self-center"
+    >
       <div className="flex items-center justify-around mb-5">
         <div>
           <label className="form-item-label mx-3">Quiz Name</label>
@@ -87,10 +105,10 @@ export default function CompanyForm() {
         </div>
         <div>
           <label className="form-item-label mx-3">Select a Tag:</label>
-          <select value={tag} onChange={(e) => setTag(e.target.value)}>
+          <select value={tagId} onChange={(e) => setTagId(e.target.value)}>
             <option value=""></option>
-            {tags.map(({ id, name }) => (
-              <option key={id} value={name}>
+            {tags.map(({ _id, name }) => (
+              <option key={_id} value={_id}>
                 {name}
               </option>
             ))}

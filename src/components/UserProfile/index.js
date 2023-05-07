@@ -1,11 +1,13 @@
 import './styles.css';
 
-export default function UserProfile() {
+export default function UserProfile({ user }) {
+  if (!user) return;
+
   return (
     <div className="profileCard">
-      <h1>Vlad Stefan</h1>
-      <h2>onedevv1@gmail.com</h2>
-      <h2>Scor: 250</h2>
+      <h1>{user.firstName + ' ' + user.lastName}</h1>
+      <h2>{user.email}</h2>
+      <h2>{user.points}</h2>
       <table>
         <thead>
           <tr>
@@ -16,24 +18,14 @@ export default function UserProfile() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Quiz 1</td>
-            <td>10:00</td>
-            <td>90</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <td>Quiz 2</td>
-            <td>15:30</td>
-            <td>75</td>
-            <td>2</td>
-          </tr>
-          <tr>
-            <td>Quiz 3</td>
-            <td>20:15</td>
-            <td>60</td>
-            <td>3</td>
-          </tr>
+          {user.leaderboard.map(({ _id, quiz, time, score, place }) => (
+            <tr key={_id}>
+              <td>{quiz}</td>
+              <td>{time}</td>
+              <td>{score}</td>
+              <td>{place}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

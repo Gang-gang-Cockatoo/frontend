@@ -1,5 +1,5 @@
 export { default as Car } from './Car';
-export { default as CompanyForm } from './CompanyForm';
+export { default as CreateQuiz } from '../pages/CreateQuiz';
 export { default as NavBar } from './NavBar';
 export { default as QuizCard } from './QuizCard';
 export { default as UserProfile } from './UserProfile';

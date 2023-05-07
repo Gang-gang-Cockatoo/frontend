@@ -10,7 +10,7 @@ import {
   RegisterRecruiter,
   UserList,
 } from '../pages';
-import { CompanyForm, PrivateRoute } from '../components';
+import { CreateQuiz, PrivateRoute } from '../components';
 
 export const router = createBrowserRouter([
   {
@@ -39,7 +39,7 @@ export const router = createBrowserRouter([
         children: [
           { path: 'quizzes', element: <Quizzes /> },
           { path: 'users', element: <UserList /> },
-          { path: 'create-quiz', element: <CompanyForm /> },
+          { path: 'create-quiz', element: <CreateQuiz /> },
         ],
       },
       // shared routes
