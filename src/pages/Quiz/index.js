@@ -5,7 +5,7 @@ import { BiStopwatch } from 'react-icons/bi';
 import { io } from 'socket.io-client';
 
 import axios from 'axios';
-
+import { FaUserAlt } from 'react-icons/fa';
 import { parseJwt } from '../../service/utils';
 import { Car, QuizCard } from '../../components';
 
@@ -136,13 +136,17 @@ export default function Quiz() {
   if (!raceStarted) {
     if (type === 'candidate')
       return (
-        <div>
-          <h1>Waiting for the host to start the race</h1>
-          <div>
-            {room &&
-              room.map(({ id, level, status, type }) => (
-                <p>{`Id: ${id}, Level: ${level}, Status: ${status}, Type: ${type}`}</p>
-              ))}
+        <div className="flex justify-center  mt-[250px]">
+          <div className="w-4/5 bg-gray-50 p-10 rounded-2xl flex  justify-center flex-col items-center">
+            <h1 className="m-2">Waiting for the host to start the race</h1>
+            <div>
+              {room &&
+                room.map(({ id, level, status, type }) => (
+                  <div className="flex flex-row">
+                    <FaUserAlt className="mx-3" />
+                  </div>
+                ))}
+            </div>
           </div>
         </div>
       );
