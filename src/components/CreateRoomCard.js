@@ -1,12 +1,29 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
+
+const POST_ROOM = `${process.env.REACT_APP_API}/rooms`;
+
 export default function CreateRoomCard({ item }) {
   const history = useNavigate();
   const [roomName, setRoomName] = useState('');
+  const token = localStorage.getItem('token');
 
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
-    history(`/quiz/${item._id}/room/${roomName}`);
+
+    await axios
+      .post(
+        POST_ROOM,
+        { quiz: item._id, name: roomName },
+        { headers: { Authorization: `bearer ${token}` } }
+      )
+      .then((response) => {
+        console.log(response);
+        if (response.data?.errors) return;
+
+        history(`/quiz/${item._id}/room/${roomName}`);
+      });
   };
 
   return (

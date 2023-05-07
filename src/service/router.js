@@ -8,6 +8,7 @@ import {
   Quizzes,
   RegisterCandidate,
   RegisterRecruiter,
+  Rooms,
   UserList,
 } from '../pages';
 import { CreateQuiz, PrivateRoute } from '../components';
@@ -30,7 +31,7 @@ export const router = createBrowserRouter([
       {
         path: '',
         element: <PrivateRoute type="candidate" />,
-        children: [{ path: 'rooms', element: <div>Rooms page</div> }],
+        children: [{ path: 'rooms', element: <Rooms /> }],
       },
       // recruiter routes
       {

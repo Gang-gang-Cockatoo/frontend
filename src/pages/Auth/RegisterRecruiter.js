@@ -22,10 +22,10 @@ export default function Regsiter() {
   const [error, setError] = useState('');
 
   const onSubmit = async (data) => {
-    const isLengthOk = (s) => 5 <= s.length && s.length <= 255;
+    const isLengthOk = (s) => 1 <= s.length && s.length <= 255;
 
     if (!isLengthOk(data.companyName)) {
-      setError('Last Name should be between 5 and 255 characters');
+      setError('Last Name should be between 1 and 255 characters');
       return;
     }
 
@@ -38,7 +38,7 @@ export default function Regsiter() {
     }
 
     if (!isLengthOk(data.password)) {
-      setError('Password should be between 5 and 255 characters');
+      setError('Password should be between 1 and 255 characters');
       return;
     }
 
@@ -65,7 +65,10 @@ export default function Regsiter() {
   };
 
   return (
-    <form className="form bg-gray-50 p-10 rounded-2xl" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="form bg-gray-50 p-10 rounded-2xl"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className="form-item">
         <label className="form-item-label">Company Name</label>
         <input className="form-item-input" {...register('companyName')} />
