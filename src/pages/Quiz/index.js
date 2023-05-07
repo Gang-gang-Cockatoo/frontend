@@ -18,7 +18,7 @@ export default function Quiz() {
         .get(GET_QUIZ + id, { headers: { Authorization: `bearer ${token}` } })
         .then((response) => {
           if (response.data?.errors) return;
-          console.log(response.data);
+          // console.log(response.data);
           setQuiz(response.data);
         });
     })();
@@ -57,7 +57,6 @@ export default function Quiz() {
             </div>
           ))}
       </div>
-      <button onClick={handleSubmit}>Submit</button>
     </Page>
   );
 }

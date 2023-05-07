@@ -67,7 +67,10 @@ export default function Regsiter() {
 
   return (
     <Page>
-      <form className="form" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="form bg-gray-50 p-10 rounded-2xl"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div className="form-item">
           <label className="form-item-label">Company Name</label>
           <input className="form-item-input" {...register('companyName')} />
