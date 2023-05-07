@@ -11,15 +11,11 @@ export default function Home() {
       <div className="max-w-3xl flex justify-center items-center flex-col text-white">
         <div className="font-mono mb-5 text-5xl">Welcome</div>
         <div className="text-center">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
+          Gang-Gang Cockatoo provides a great app that tests the quick thinking
+          and ability to react to the environment efficiently. We want the
+          companies to thrive in the aspect of being able to redress in case of
+          an urgency and have capable people that would help them meet their
+          targets.
         </div>
         <div className="mt-10 mb-7 text-3xl">Who are you?</div>
         <div className="flex flex-row">
